@@ -1,0 +1,13 @@
+{
+    "name": "delatrak-mattcavanagh/ci-demo",
+    "description": "CI Demo for DealTrak",
+    "require": {
+        "vlucas/phpdotenv": "^3.6"
+    },
+    "authors": [
+        {
+            "name": "Matt Cavanagh",
+            "email": "matt.cavanagh@dealtrak.co.uk"
+        }
+    ]
+}
