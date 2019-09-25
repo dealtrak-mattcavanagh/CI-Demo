@@ -6,11 +6,11 @@ use Zend\Diactoros\Response\JsonResponse;
 
 class JsonResponseService
 {
-    public function generateResponse($body)
+    public function generateResponse($body, $code = 200)
     {
         $response = new JsonResponse(
             $body,
-            200,
+            $code,
             ['Content-Type' => ['application/json']]
         );
 

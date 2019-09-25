@@ -4,13 +4,13 @@ namespace Matt\CIDemo\Service;
 
 use Zend\Diactoros\Response\HtmlResponse;
 
-class ResponseService
+class HtmlResponseService
 {
-    public function generateResponse($body)
+    public function generateResponse($body, $code = 200)
     {
         $response = new HtmlResponse(
             $body,
-            200
+            $code
         );
 
         return $response;
