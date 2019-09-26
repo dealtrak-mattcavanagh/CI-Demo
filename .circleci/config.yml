@@ -1,5 +1,14 @@
+version: 2.1
+
+executors:
+  make-it-so:
+    docker:
+      - image: circleci/php:7.2-fpm
+    working_directory: /app
+
 jobs:
   build:
+    executor: make-it-so
     docker:
       - image: circleci/php:7.2-fpm
     steps:
@@ -17,6 +26,7 @@ jobs:
       - persist_to_workspace:
           root: app
   phpspec:
+    executor: make-it-so
     docker:
       - image: circleci/php:7.2-fpm
     steps:
