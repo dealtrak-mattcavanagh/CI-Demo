@@ -41,6 +41,11 @@ jobs:
       - run: cd app && php vendor/bin/phpspec run
       - store_artifacts:
           path: ~/app/coverage
+#  deploy:
+#    executor: make-it-so
+#    steps:
+#
+#
 
 workflows:
   version: 2
@@ -53,8 +58,11 @@ workflows:
       - phpspec_2:
           requires:
             - build
-      - deploy_fake:
+      - deploy_hold:
           type: approval
           requires:
             - phpspec
             - phpspec_2
+#      - deploy:
+#          requires:
+#            - deploy

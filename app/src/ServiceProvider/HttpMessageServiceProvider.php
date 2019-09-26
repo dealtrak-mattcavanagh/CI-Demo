@@ -19,6 +19,5 @@ class HttpMessageServiceProvider extends AbstractServiceProvider
     {
         $this->getContainer()->add(Response::class);
         $this->getContainer()->add(HtmlResponseService::class);
-        $this->getContainer()->add(JsonResponseService::class);
     }
 }
