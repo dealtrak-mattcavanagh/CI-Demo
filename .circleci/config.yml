@@ -15,4 +15,4 @@ jobs:
           key: composer-v1-{{ checksum "app/composer.lock" }}
           paths:
             - app/vendor
-      - run: php app/vendor/bin/phpspec run
+      - run: cd app && php vendor/bin/phpspec run
