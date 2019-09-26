@@ -17,4 +17,4 @@ jobs:
             - app/vendor
       - run: cd app && php vendor/bin/phpspec -c phpspec-ci.yml run
       - store_artifacts:
-          path: coverage
+          path: app/coverage
