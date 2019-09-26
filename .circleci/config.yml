@@ -18,3 +18,5 @@ jobs:
       - run: cd app && php vendor/bin/phpspec -c phpspec-ci.yml run
       - store_artifacts:
           path: app/coverage
+      - store_test_results:
+          path: app/coverage
