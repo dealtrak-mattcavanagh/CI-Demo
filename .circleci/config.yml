@@ -30,4 +30,6 @@ workflows:
   build:
     jobs:
       - build
-      - phpspec
+      - phpspec:
+          requires:
+            - build
