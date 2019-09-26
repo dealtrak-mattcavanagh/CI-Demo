@@ -4,13 +4,10 @@ namespace Matt\CIDemo\Service;
 
 use Zend\Diactoros\Response\JsonResponse;
 
-class JsonResponseService
+class JsonResponseService implements HttpResponseInterface
 {
     /**
-     * @param     $body
-     * @param int $code
-     *
-     * @return JsonResponse
+     * @inheritDoc
      */
     public function generateResponse($body, $code = 200)
     {
