@@ -32,7 +32,7 @@ jobs:
           at: ~/app
       - run: cd app && php vendor/bin/phpspec run
       - store_artifacts:
-          path: ~/coverage
+          path: ~/app/coverage
   phpspec_2:
     executor: make-it-so
     steps:
@@ -40,7 +40,7 @@ jobs:
           at: ~/app
       - run: cd app && php vendor/bin/phpspec run
       - store_artifacts:
-          path: ~/coverage
+          path: ~/app/coverage
 
 workflows:
   version: 2
