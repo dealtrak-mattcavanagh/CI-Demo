@@ -33,6 +33,14 @@ jobs:
       - run: cd app && php vendor/bin/phpspec run
       - store_artifacts:
           path: ~/coverage
+  phpspec_2:
+    executor: make-it-so
+    steps:
+      - attach_workspace:
+          at: ~/app
+      - run: cd app && php vendor/bin/phpspec run
+      - store_artifacts:
+          path: ~/coverage
 
 workflows:
   version: 2
@@ -42,3 +50,7 @@ workflows:
       - phpspec:
           requires:
             - build
+      - phpspec_2:
+          requires:
+            - build
+
