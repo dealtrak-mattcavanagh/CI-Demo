@@ -4,4 +4,4 @@ extensions:
       - text
       - html
     output:
-      html: coverage
+      xml: coverage
