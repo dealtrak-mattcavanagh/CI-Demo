@@ -22,14 +22,14 @@ jobs:
           paths:
             - app/vendor
       - persist_to_workspace:
-          root: ~/app/workspace
+          root: ~/app
           paths:
             - app
   phpspec:
     executor: make-it-so
     steps:
       - attach_workspace:
-          at: ~/app/workspace
+          at: ~/app
       - run: cd app && php vendor/bin/phpspec run
       - store_artifacts:
           path: ~/coverage
