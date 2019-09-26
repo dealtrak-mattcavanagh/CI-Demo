@@ -32,5 +32,6 @@ class HttpMessageServiceProviderSpec extends ObjectBehavior
         $this->getContainer()->add(Response::class)->shouldBeCalled();
         $this->getContainer()->add(HtmlResponseService::class)->shouldBeCalled();
         $this->getContainer()->add(JsonResponseService::class)->shouldBeCalled();
+        $this->register();
     }
 }
