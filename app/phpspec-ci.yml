@@ -4,5 +4,5 @@ extensions:
       - html
       - xml
     output:
-      html: coverage
-      xml: coverage-ci/phpspec
+      html: coverage/phpspec/html
+      xml: coverage/phpspec/xml
