@@ -41,9 +41,7 @@ class IndexController
      */
     public function index(RequestInterface $request)
     {
-        $body = "Foobar!!!!";
-
-        return $this->htmlResponseService->generateResponse($body);
+        return $this->htmlResponseService->generateResponse("foo");
     }
 
     /**
