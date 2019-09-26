@@ -4,7 +4,7 @@ executors:
   make-it-so:
     docker:
       - image: circleci/php:7.2-fpm
-    working_directory: /app
+    working_directory: app
 
 jobs:
   build:
@@ -22,14 +22,14 @@ jobs:
           paths:
             - app/vendor
       - persist_to_workspace:
-          root: /app/workspace
+          root: app/workspace
           paths:
             - app/*
   phpspec:
     executor: make-it-so
     steps:
       - attach_workspace:
-          at: /app/workspace
+          at: app/workspace
       - run: cd app && php vendor/bin/phpspec run
       - store_artifacts:
           path: app/coverage
