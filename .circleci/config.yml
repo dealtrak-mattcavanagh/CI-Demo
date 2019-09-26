@@ -15,9 +15,7 @@ jobs:
           paths:
             - app/vendor
       - persist_to_workspace:
-          root: workspace
-          paths:
-            - app
+          root: app
   phpspec:
     docker:
       - image: circleci/php:7.2-fpm
