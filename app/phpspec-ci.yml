@@ -2,5 +2,7 @@ extensions:
   LeanPHP\PhpSpec\CodeCoverage\CodeCoverageExtension:
     format:
       - html
+      - xml
     output:
       html: coverage
+      xml: coverage/PHPSpec
