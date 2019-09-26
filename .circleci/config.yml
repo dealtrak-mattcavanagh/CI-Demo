@@ -22,7 +22,9 @@ jobs:
           paths:
             - app/vendor
       - persist_to_workspace:
-          root: app
+          root: /app/workspace
+          paths:
+            - app/*
   phpspec:
     executor: make-it-so
     steps:
