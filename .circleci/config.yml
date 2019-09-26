@@ -43,9 +43,9 @@ jobs:
           path: ~/app/coverage
   hold:
     type: approval
-      requires:
-        - phpspec
-        - phpspec_2
+    requires:
+      - phpspec
+      - phpspec_2
 
 workflows:
   version: 2
