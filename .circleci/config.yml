@@ -43,7 +43,6 @@ jobs:
           path: ~/app/coverage
   hold:
     type: approval
-    executor: make-it-so
     requires:
       - phpspec
       - phpspec_2
@@ -62,4 +61,3 @@ workflows:
       - deploy_fake:
           requires:
             - hold
-
