@@ -9,8 +9,6 @@ executors:
 jobs:
   build:
     executor: make-it-so
-    docker:
-      - image: circleci/php:7.2-fpm
     steps:
       - checkout
       - run: sudo composer self-update
