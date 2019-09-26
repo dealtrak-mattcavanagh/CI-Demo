@@ -1,4 +1,3 @@
-version: 2
 jobs:
   build:
     docker:
@@ -18,3 +17,16 @@ jobs:
       - run: cd app && php vendor/bin/phpspec run
       - store_artifacts:
           path: app/coverage
+  phpspec:
+    docker:
+      - image: circleci/php:7.2-fpm
+    steps:
+      - run: cd app && php vendor/bin/phpspec run
+      - store_artifacts:
+          path: app/coverage
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - phpspec
