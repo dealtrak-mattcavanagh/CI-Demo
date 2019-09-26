@@ -19,4 +19,4 @@ jobs:
       - store_artifacts:
           path: app/coverage
       - store_test_results:
-          path: app/coverage
+          path: app/coverage/index.xml
