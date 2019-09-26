@@ -43,6 +43,7 @@ jobs:
           path: ~/app/coverage
   hold:
     type: approval
+    executor: make-it-so
     requires:
       - phpspec
       - phpspec_2
