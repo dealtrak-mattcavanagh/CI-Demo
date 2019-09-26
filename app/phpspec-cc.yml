@@ -1,0 +1,7 @@
+extensions:
+  LeanPHP\PhpSpec\CodeCoverage\CodeCoverageExtension:
+    format:
+      - text
+      - html
+    output:
+      html: coverage

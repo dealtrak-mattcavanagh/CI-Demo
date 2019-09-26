@@ -10,8 +10,9 @@ services:
       - ./docker/nginx/site.conf:/etc/nginx/conf.d/site.conf
       - ./:/var/www/html
   php:
+    build:
+      context: .
     container_name: cidemo-php
-    image: php:7.3-fpm
     volumes:
       - ./:/var/www/html
 networks:
