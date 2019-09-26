@@ -14,10 +14,14 @@ jobs:
           key: composer-v1-{{ checksum "app/composer.lock" }}
           paths:
             - app/vendor
+      - persist_to_workspace:
+          paths: app
   phpspec:
     docker:
       - image: circleci/php:7.2-fpm
     steps:
+      - attach_workspace:
+          - at: app
       - run: cd app && php vendor/bin/phpspec run
       - store_artifacts:
           path: app/coverage
