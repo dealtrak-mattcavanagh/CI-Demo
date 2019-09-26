@@ -7,45 +7,46 @@ executors:
     working_directory: ~/app
 
 jobs:
-  build:
-    executor: make-it-so
-    steps:
-      - checkout
-      - run: sudo composer self-update
-      - restore_cache:
-          keys:
-            - composer-v1-{{ checksum "app/composer.lock" }}
-            - composer-v1-
-      - run: composer install -n --prefer-dist -d app
-      - save_cache:
-          key: composer-v1-{{ checksum "app/composer.lock" }}
-          paths:
-            - app/vendor
-      - persist_to_workspace:
-          root: ~/app
-          paths:
-            - app
-  phpspec:
-    executor: make-it-so
-    steps:
-      - attach_workspace:
-          at: ~/app
-      - run: cd app && php vendor/bin/phpspec run
-      - store_artifacts:
-          path: ~/app/coverage
-  phpspec_2:
-    executor: make-it-so
-    steps:
-      - attach_workspace:
-          at: ~/app
-      - run: cd app && php vendor/bin/phpspec run
-      - store_artifacts:
-          path: ~/app/coverage
-  hold:
-    type: approval
-    requires:
-      - phpspec
-      - phpspec_2
+  - build:
+      executor: make-it-so
+      steps:
+        - checkout
+        - run: sudo composer self-update
+        - restore_cache:
+            keys:
+              - composer-v1-{{ checksum "app/composer.lock" }}
+              - composer-v1-
+        - run: composer install -n --prefer-dist -d app
+        - save_cache:
+            key: composer-v1-{{ checksum "app/composer.lock" }}
+            paths:
+              - app/vendor
+        - persist_to_workspace:
+            root: ~/app
+            paths:
+              - app
+  - phpspec:
+      executor: make-it-so
+      steps:
+        - attach_workspace:
+            at: ~/app
+        - run: cd app && php vendor/bin/phpspec run
+        - store_artifacts:
+            path: ~/app/coverage
+  - phpspec_2:
+      executor: make-it-so
+      steps:
+        - attach_workspace:
+            at: ~/app
+        - run: cd app && php vendor/bin/phpspec run
+        - store_artifacts:
+            path: ~/app/coverage
+  - hold:
+      executor: make-it-so
+      type: approval
+      requires:
+        - phpspec
+        - phpspec_2
 
 workflows:
   version: 2
