@@ -27,8 +27,6 @@ jobs:
           root: app
   phpspec:
     executor: make-it-so
-    docker:
-      - image: circleci/php:7.2-fpm
     steps:
       - attach_workspace:
           - at: app
