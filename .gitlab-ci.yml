@@ -5,15 +5,7 @@ stages:
 build:
   stage: build
   script:
-    - echo "Building..."
-    - mkdir build
-    - touch build/hello-world.txt
+    - ls -lah
   artifacts:
     paths:
       - build/
-
-test:
-  stage: test
-  script:
-    - echo "Testing..."
-    - test -f "build/hello-world.txt"
