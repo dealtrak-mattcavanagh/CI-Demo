@@ -91,4 +91,4 @@ workflows:
           family: "ci-service"
           cluster-name: "ci-cluster"
           service-name: "ci-demo-ecs"
-          container-image-name-updates: "container=ci-service,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=ci-app,tag=${CIRCLE_SHA1}"
