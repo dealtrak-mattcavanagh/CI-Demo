@@ -59,3 +59,4 @@ deploy:
     - echo "deploy meh!"
   only:
     - master
+  when: manual
