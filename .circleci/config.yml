@@ -71,7 +71,7 @@ workflows:
       - aws-ecr/build-and-push-image:
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
           repo: "ci-demo"
-          region: "${AWS_REGION}"
+          region: ${AWS_REGION}
           tag: "${CIRCLE_SHA1}"
       - aws-ecs/update-task-definition:
           requires:
