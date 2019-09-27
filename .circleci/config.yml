@@ -76,8 +76,8 @@ workflows:
           tag: '${CIRCLE_SHA1}'
           path: ~/app
           dockerfile: ~/Dockerfile-prod
-          requires:
-            - approval
+#          requires:
+#            - approval
       - aws-ecs/update-task-definition:
           requires:
               - aws-ecr/build-and-push-image
