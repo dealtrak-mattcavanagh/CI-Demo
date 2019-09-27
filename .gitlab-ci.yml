@@ -1,11 +1,17 @@
 stages:
-  - build
-  - test
+  - composer
+  - list
 
-build:
-  stage: build
+composer:
+  stage: composer
+  image: composer:latest
   script:
-    - ls -lah
+    - composer install
   artifacts:
     paths:
-      - build/
+      - vendor/
+
+list:
+  stage: list
+  script:
+    - ls -lah
