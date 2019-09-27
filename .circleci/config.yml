@@ -79,16 +79,15 @@ workflows:
           tag: '${CIRCLE_SHA1}'
           path: ~/project/app
           dockerfile: ~/project/app/Dockerfile-prod
-      - aws-ecs/update-task-definition:
-          requires:
-              - aws-ecr/build-and-push-image
-          aws-region: '${AWS_REGION}'
-          family: "ci-task-def"
-          tag: '${CIRCLE_SHA1}'
+#      - aws-ecs/update-task-definition:
+#          requires:
+#              - aws-ecr/build-and-push-image
+#          aws-region: '${AWS_REGION}'
+#          family: "ci-task-def"
       - aws-ecs/deploy-service-update:
           requires:
-            - aws-ecs/update-task-definition
+            - aws-ecs/build-and-push-image
           aws-region: '${AWS_REGION}'
-          family: "ci-task-def"
+          family: "ci-service"
           cluster-name: "ci-cluster"
           container-image-name-updates: "container=ci-demo,tag=${CIRCLE_SHA1}"
