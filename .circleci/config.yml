@@ -48,9 +48,9 @@ jobs:
 #
 #
 orbs:
-  aws-ecr: circleci/aws-ecr@6.4.0
-  aws-ecs: circleci/aws-ecs@0.0.11
-  aws-cli: circleci/aws-cli@0.1.16
+  aws_ecr: circleci/aws-ecr@6.4.0
+  aws_ecs: circleci/aws-ecs@0.0.11
+  aws_cli: circleci/aws-cli@0.1.16
 
 workflows:
   version: 2
