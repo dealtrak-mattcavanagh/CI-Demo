@@ -86,7 +86,7 @@ workflows:
 #          family: "ci-task-def"
       - aws-ecs/deploy-service-update:
           requires:
-            - aws-ecs/build-and-push-image
+            - aws-ecr/build-and-push-image
           aws-region: '${AWS_REGION}'
           family: "ci-service"
           cluster-name: "ci-cluster"
