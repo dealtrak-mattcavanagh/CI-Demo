@@ -1,6 +1,7 @@
 stages:
   - composer
   - testing
+  - deploy
 
 composer:
   stage: composer
@@ -50,4 +51,11 @@ phpspec2:
     policy: pull
   only:
     - merge_requests
+    - master
+
+deploy:
+  stage: deploy
+  script:
+    - echo "deploy meh!"
+  only:
     - master
