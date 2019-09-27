@@ -84,6 +84,7 @@ workflows:
               - aws-ecr/build-and-push-image
           aws-region: '${AWS_REGION}'
           family: "ci-task-def"
+          tag: '${CIRCLE_SHA1}'
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecs/update-task-definition
