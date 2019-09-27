@@ -90,5 +90,5 @@ workflows:
           aws-region: '${AWS_REGION}'
           family: "ci-service"
           cluster-name: "ci-cluster"
-          service: "ci-demo-ecs"
+          service-name: "ci-demo-ecs"
           container-image-name-updates: "container=ci-service,tag=${CIRCLE_SHA1}"
