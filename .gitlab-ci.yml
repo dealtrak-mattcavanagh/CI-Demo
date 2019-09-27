@@ -16,6 +16,8 @@ phpspec:
   stage: testing
   image: php:7.2
   script:
+    - ls -l
+    - pwd
     - ls -lah app/vendor
     - cd app && php vendor/bin/phpspec run
   artifacts:
