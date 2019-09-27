@@ -51,7 +51,7 @@ class IndexController
      */
     public function jsonIndex(RequestInterface $request)
     {
-        $body = ["foo" => "bar"];
+        $body = ["foo" => "test"];
 
         return $this->jsonResponseService->generateResponse($body);
     }
