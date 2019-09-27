@@ -68,14 +68,14 @@ workflows:
           requires:
             - phpspec
             - phpspec_2
-      - aws-ecr/build_and_push_image:
+      - aws-ecr/build-and-push-image:
           account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
           repo: "ci-demo"
           region: "${AWS_REGION}"
           tag: "${CIRCLE_SHA1}"
       - aws-ecs/update-task-definition:
           requires:
-              - aws-ecr/build_and_push_image
+              - aws-ecr/build-and-push-image
           aws-region: ${AWS_REGION}
           family: "ci-task-def"
       - aws-ecs/deploy-service-update:
