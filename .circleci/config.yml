@@ -63,11 +63,11 @@ workflows:
       - behat_fake:
           requires:
             - checkout_and_build
-      - approval:
-          type: approval
-          requires:
-            - phpspec
-            - behat_fake
+#      - approval:
+#          type: approval
+#          requires:
+#            - phpspec
+#            - behat_fake
       - aws-ecr/build-and-push-image:
           attach-workspace: true
           account-url: AWS_ECR_ACCOUNT_URL
