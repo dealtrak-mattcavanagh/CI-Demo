@@ -6,7 +6,9 @@ composer:
   stage: composer
   image: composer:1.6
   script:
-    - cd app && composer install
+    - cd app
+    - ls -lah vendor
+    - composer install
   cache:
     paths:
       - app/vendor
@@ -18,13 +20,16 @@ phpspec:
   script:
     - ls -l
     - pwd
-    - ls -lah app/vendor
+    - ls -lah app
     - cd app && php vendor/bin/phpspec run
   artifacts:
     paths:
       - app/coverage
   cache:
     key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - app/vendor
+    policy: pull
 
 phpspec2:
   stage: testing
@@ -36,4 +41,7 @@ phpspec2:
       - app/coverage
   cache:
     key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - app/vendor
+    policy: pull
 
