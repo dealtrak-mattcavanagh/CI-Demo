@@ -75,7 +75,7 @@ workflows:
           region: AWS_DEFAULT_REGION
           tag: '${CIRCLE_SHA1}'
           path: ~/project/app
-          dockerfile: Dockerfile-prod
+          dockerfile: ~/project/app/Dockerfile-prod
           requires:
             - phpspec
             - behat_fake
