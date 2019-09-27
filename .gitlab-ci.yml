@@ -1,18 +1,32 @@
 stages:
   - composer
-  - list
+  - testing
 
 composer:
   stage: composer
   image: composer:1.6
   script:
     - cd app && composer install
+  cache:
+    paths:
+      - app/vendor
+    key: ${CI_COMMIT_REF_SLUG}
+
+phpspec:
+  stage: testing
+  image: php:7.2
+  script:
+    - cd app && php vendor/bin/phpspec run
   artifacts:
     paths:
-      - app/vendor/
+      - app/coverage
 
-list:
-  stage: list
+phpspec2:
+  stage: testing
+  image: php:7.2
   script:
-    - ls -lah
-    - cd app/vendor && ls -lah
+    - cd app && php vendor/bin/phpspec run
+  artifacts:
+    paths:
+      - app/coverage
+
