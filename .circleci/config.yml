@@ -73,6 +73,8 @@ workflows:
           repo: "ci-demo"
           region: AWS_REGION
           tag: '${CIRCLE_SHA1}'
+          requires:
+            - deploy_hold
       - aws-ecs/update-task-definition:
           requires:
               - aws-ecr/build-and-push-image
