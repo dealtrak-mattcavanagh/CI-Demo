@@ -4,7 +4,7 @@ stages:
 
 composer:
   stage: composer
-  image: composer:latest
+  image: composer:1.6
   script:
     - cd app && composer install
   artifacts:
