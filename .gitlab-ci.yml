@@ -7,7 +7,6 @@ composer:
   image: composer:1.6
   script:
     - cd app
-    - ls -lah vendor
     - composer install
   cache:
     paths:
