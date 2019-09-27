@@ -12,8 +12,6 @@ composer:
     paths:
       - app/vendor
     key: ${CI_COMMIT_REF_SLUG}
-  only:
-    - master
 
 phpspec:
   stage: testing
@@ -29,8 +27,6 @@ phpspec:
     paths:
       - app/vendor
     policy: pull
-  only:
-    - master
 
 phpspec2:
   stage: testing
@@ -46,5 +42,3 @@ phpspec2:
     paths:
       - app/vendor
     policy: pull
-  only:
-    - master
