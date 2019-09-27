@@ -2,7 +2,7 @@
   {
     "name": "ci-app",
     "image": "204152705904.dkr.ecr.eu-west-2.amazonaws.com/ci-demo:latest",
-    "cpu": 10,
+    "cpu": 256,
     "memory": 512,
     "essential": true,
     "portMappings": [

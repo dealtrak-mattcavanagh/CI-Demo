@@ -46,7 +46,6 @@ jobs:
 #    executor: make-it-so
 #    steps:
 #
-#
 orbs:
   aws-ecr: circleci/aws-ecr@6.4.0
   aws-ecs: circleci/aws-ecs@0.0.11
@@ -79,11 +78,6 @@ workflows:
           tag: '${CIRCLE_SHA1}'
           path: ~/project/app
           dockerfile: ~/project/app/Dockerfile-prod
-#      - aws-ecs/update-task-definition:
-#          requires:
-#              - aws-ecr/build-and-push-image
-#          aws-region: '${AWS_REGION}'
-#          family: "ci-task-def"
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
