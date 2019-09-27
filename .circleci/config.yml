@@ -74,7 +74,7 @@ workflows:
           region: "${AWS_REGION}"
           tag: "${CIRCLE_SHA1}"
       - aws_ecs/update-task-definition:
-          - requires:
+          requires:
               - aws-ecr/build_and_push_image
           aws-region: ${AWS_REGION}
           family: "ci-task-def"
