@@ -76,7 +76,7 @@ workflows:
           path: ~/app
           dockerfile: Dockerfile-prod
           requires:
-            - deploy_hold
+            - approval
       - aws-ecs/update-task-definition:
           requires:
               - aws-ecr/build-and-push-image
