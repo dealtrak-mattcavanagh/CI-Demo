@@ -76,7 +76,7 @@ workflows:
           region: AWS_DEFAULT_REGION
           tag: '${CIRCLE_SHA1}'
           path: ~/app
-          dockerfile: Dockerfile-prod
+          dockerfile: ~/app/Dockerfile-prod
           requires:
             - approval
       - aws-ecs/update-task-definition:
