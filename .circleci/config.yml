@@ -33,7 +33,7 @@ jobs:
       - run: cd app && php vendor/bin/phpspec run
       - store_artifacts:
           path: ~/app/coverage
-  phpspec_2:
+  behat_fake:
     executor: make-it-so
     steps:
       - attach_workspace:
@@ -60,19 +60,21 @@ workflows:
       - phpspec:
           requires:
             - build
-      - phpspec_2:
+      - behat_fake:
           requires:
             - build
-      - deploy_hold:
+      - approval:
           type: approval
           requires:
             - phpspec
-            - phpspec_2
+            - behat_fake
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
           repo: "ci-demo"
           region: AWS_DEFAULT_REGION
           tag: '${CIRCLE_SHA1}'
+          path: ~/app
+          dockerfile: Dockerfile-prod
           requires:
             - deploy_hold
       - aws-ecs/update-task-definition:
