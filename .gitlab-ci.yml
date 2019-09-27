@@ -6,10 +6,10 @@ composer:
   stage: composer
   image: composer:latest
   script:
-    - composer install
+    - cd app && composer install
   artifacts:
     paths:
-      - vendor/
+      - app/vendor/
 
 list:
   stage: list
