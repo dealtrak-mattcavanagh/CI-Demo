@@ -41,11 +41,16 @@ jobs:
       - run: cd app && php vendor/bin/phpspec run
       - store_artifacts:
           path: ~/app/coverage
+
 #  deploy:
 #    executor: make-it-so
 #    steps:
 #
 #
+orbs:
+  aws-ecr: circleci/aws-ecr@6.4.0
+  aws-ecs: circleci/aws-ecs@0.0.11
+  aws-cli: circleci/aws-cli@0.1.16
 
 workflows:
   version: 2
@@ -63,6 +68,20 @@ workflows:
           requires:
             - phpspec
             - phpspec_2
-#      - deploy:
-#          requires:
-#            - deploy
+      - aws_ecr/build_and_push_image:
+          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+          repo: "ci-demo"
+          region: "${AWS_REGION}"
+          tag: "${CIRCLE_SHA1}"
+      - aws_ecs/update-task-definition:
+          - requires:
+              - aws-ecr/build_and_push_image
+          aws-region: ${AWS_REGION}
+          family: "ci-task-def"
+      - aws_ecs/deploy-service-update:
+          requires:
+            - aws-ecr/update-task-definition
+          aws-region: ${AWS_REGION}
+          family: "ci-service"
+          cluster-name: "ci-cluster"
+          container-image-name-updates: "container=ci-service,tag=${CIRCLE_SHA1}"
