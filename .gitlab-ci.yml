@@ -33,6 +33,7 @@ phpspec2:
   stage: testing
   image: php:7.2
   script:
+    - pecl install xdebug && docker-php-ext-enable xdebug # Install xdebug for the documentation
     - cd app && php vendor/bin/phpspec run
   artifacts:
     paths:
@@ -42,4 +43,3 @@ phpspec2:
     paths:
       - app/vendor
     policy: pull
-
