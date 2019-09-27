@@ -69,25 +69,26 @@ workflows:
 #            - phpspec
 #            - behat_fake
       - aws-ecr/build-and-push-image:
-          attach-workspace: true
-          account-url: AWS_ECR_ACCOUNT_URL
-          repo: "ci-demo"
-          region: AWS_DEFAULT_REGION
-          tag: '${CIRCLE_SHA1}'
-          path: ~/project/app
-          dockerfile: ~/project/app/Dockerfile-prod
           requires:
             - phpspec
             - behat_fake
+          attach-workspace: true
+          account-url: AWS_ECR_ACCOUNT_URL
+          repo: "ci-demo"
+          region: AWS_REGION
+          tag: '${CIRCLE_SHA1}'
+          path: ~/project/app
+          dockerfile: ~/project/app/Dockerfile-prod
+          container-image-name-updates: "container=ci-demo,tag=${CIRCLE_SHA1}"
       - aws-ecs/update-task-definition:
           requires:
               - aws-ecr/build-and-push-image
-          aws-region: '${AWS_DEFAULT_REGION}'
+          aws-region: '${AWS_REGION}'
           family: "ci-task-def"
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecs/update-task-definition
-          aws-region: '${AWS_DEFAULT_REGION}'
+          aws-region: '${AWS_REGION}'
           family: "ci-service"
           cluster-name: "ci-cluster"
           container-image-name-updates: "container=ci-demo,tag=${CIRCLE_SHA1}"
