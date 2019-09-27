@@ -1,0 +1,88 @@
+version: 2.1
+
+executors:
+  make-it-so:
+    docker:
+      - image: circleci/php:7.2-fpm
+    working_directory: ~/app
+
+jobs:
+  checkout_and_build:
+    executor: make-it-so
+    steps:
+      - checkout
+      - run: sudo composer self-update
+      - restore_cache:
+          keys:
+            - composer-v1-{{ checksum "app/composer.lock" }}
+            - composer-v1-
+      - run: composer install -n --prefer-dist -d app
+      - save_cache:
+          key: composer-v1-{{ checksum "app/composer.lock" }}
+          paths:
+            - app/vendor
+      - persist_to_workspace:
+          root: ~/app
+          paths:
+            - app
+  phpspec:
+    executor: make-it-so
+    steps:
+      - attach_workspace:
+          at: ~/app
+      - run: cd app && php vendor/bin/phpspec run
+      - store_artifacts:
+          path: ~/app/coverage
+  behat_fake:
+    executor: make-it-so
+    steps:
+      - attach_workspace:
+          at: ~/app
+      - run: cd app && php vendor/bin/phpspec run
+      - store_artifacts:
+          path: ~/app/coverage
+
+#  deploy:
+#    executor: make-it-so
+#    steps:
+#
+orbs:
+  aws-ecr: circleci/aws-ecr@6.4.0
+  aws-ecs: circleci/aws-ecs@0.0.11
+  aws-cli: circleci/aws-cli@0.1.16
+
+workflows:
+  version: 2
+  ci-demo:
+    jobs:
+      - checkout_and_build
+      - phpspec:
+          requires:
+            - checkout_and_build
+      - behat_fake:
+          requires:
+            - checkout_and_build
+#      - approval:
+#          type: approval
+#          requires:
+#            - phpspec
+#            - behat_fake
+      - aws-ecr/build-and-push-image:
+          requires:
+            - phpspec
+            - behat_fake
+          attach-workspace: true
+          account-url: AWS_ECR_ACCOUNT_URL
+          repo: "ci-service"
+          region: AWS_REGION
+          tag: '${CIRCLE_SHA1}'
+          path: ~/project/app
+          dockerfile: ~/project/app/Dockerfile-prod
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          aws-region: '${AWS_REGION}'
+          family: "ci-service"
+          cluster-name: "ci-demo"
+          service-name: "ci-demo-ecs"
+          container-image-name-updates: "container=ci-app,tag=${CIRCLE_SHA1}"

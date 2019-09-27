@@ -1,0 +1,15 @@
+[
+  {
+    "name": "ci-app",
+    "image": "204152705904.dkr.ecr.eu-west-2.amazonaws.com/ci-demo:latest",
+    "cpu": 256,
+    "memory": 512,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ]
+  }
+]

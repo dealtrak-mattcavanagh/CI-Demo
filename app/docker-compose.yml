@@ -1,0 +1,21 @@
+
+version: '3'
+services:
+  nginx:
+    container_name: cidemo-nginx
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/nginx/site.conf:/etc/nginx/conf.d/site.conf
+      - ./:/var/www/html
+  php:
+    build:
+      context: .
+    container_name: cidemo-php
+    volumes:
+      - ./:/var/www/html
+networks:
+  default:
+    external:
+      name: local
