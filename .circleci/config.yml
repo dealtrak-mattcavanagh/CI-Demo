@@ -88,6 +88,6 @@ workflows:
           requires:
             - aws-ecs/update-task-definition
           aws-region: '${AWS_REGION}'
-          family: "ci-service"
+          family: "ci-task-def"
           cluster-name: "ci-cluster"
           container-image-name-updates: "container=ci-demo,tag=${CIRCLE_SHA1}"
