@@ -41,7 +41,7 @@ class IndexController
      */
     public function index(RequestInterface $request)
     {
-        return $this->htmlResponseService->generateResponse("Test 1");
+        return $this->htmlResponseService->generateResponse("Test 2");
     }
 
     /**
