@@ -20,6 +20,8 @@ phpspec:
   artifacts:
     paths:
       - app/coverage
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
 
 phpspec2:
   stage: testing
@@ -29,4 +31,6 @@ phpspec2:
   artifacts:
     paths:
       - app/coverage
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
 
