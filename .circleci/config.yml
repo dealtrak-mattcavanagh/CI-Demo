@@ -69,19 +69,19 @@ workflows:
             - phpspec
             - phpspec_2
       - aws-ecr/build-and-push-image:
-          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+          account-url: '${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com'
           repo: "ci-demo"
-          region: ${AWS_REGION}
-          tag: "${CIRCLE_SHA1}"
+          region: '${AWS_REGION}'
+          tag: '${CIRCLE_SHA1}'
       - aws-ecs/update-task-definition:
           requires:
               - aws-ecr/build-and-push-image
-          aws-region: ${AWS_REGION}
+          aws-region: '${AWS_REGION}'
           family: "ci-task-def"
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecs/update-task-definition
-          aws-region: ${AWS_REGION}
+          aws-region: '${AWS_REGION}'
           family: "ci-service"
           cluster-name: "ci-cluster"
           container-image-name-updates: "container=ci-service,tag=${CIRCLE_SHA1}"
