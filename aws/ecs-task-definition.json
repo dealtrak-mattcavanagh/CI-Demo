@@ -1,7 +1,7 @@
 [
   {
     "name": "ci-app",
-    "image": "204152705904.dkr.ecr.eu-west-2.amazonaws.com/ci-demo/app:latest",
+    "image": "204152705904.dkr.ecr.eu-west-2.amazonaws.com/ci-demo:${CIRCLE_SHA1}",
     "cpu": 10,
     "memory": 512,
     "essential": true,
