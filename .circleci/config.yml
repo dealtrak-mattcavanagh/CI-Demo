@@ -70,13 +70,12 @@ workflows:
             - behat_fake
       - aws-ecr/build-and-push-image:
           attach-workspace: true
-          workspace-root: ~/app
           account-url: AWS_ECR_ACCOUNT_URL
           repo: "ci-demo"
           region: AWS_DEFAULT_REGION
           tag: '${CIRCLE_SHA1}'
           path: ~/app
-          dockerfile: ~/app/Dockerfile-prod
+          dockerfile: ~/Dockerfile-prod
           requires:
             - approval
       - aws-ecs/update-task-definition:
