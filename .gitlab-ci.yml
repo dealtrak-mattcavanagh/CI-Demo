@@ -8,6 +8,9 @@ build:
     - echo "Building..."
     - mkdir build
     - touch build/hello-world.txt
+  artifacts:
+    paths:
+      - build/
 
 test:
   stage: test
