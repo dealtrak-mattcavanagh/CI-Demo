@@ -80,7 +80,7 @@ workflows:
           family: "ci-task-def"
       - aws_ecs/deploy-service-update:
           requires:
-            - aws-ecr/update-task-definition
+            - aws_ecs/update-task-definition
           aws-region: ${AWS_REGION}
           family: "ci-service"
           cluster-name: "ci-cluster"
