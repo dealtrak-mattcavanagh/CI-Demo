@@ -74,7 +74,7 @@ workflows:
             - behat_fake
           attach-workspace: true
           account-url: AWS_ECR_ACCOUNT_URL
-          repo: "ci-demo"
+          repo: "ci-service"
           region: AWS_REGION
           tag: '${CIRCLE_SHA1}'
           path: ~/project/app
@@ -90,4 +90,4 @@ workflows:
           aws-region: '${AWS_REGION}'
           family: "ci-service"
           cluster-name: "ci-cluster"
-          container-image-name-updates: "container=ci-demo,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=ci-service,tag=${CIRCLE_SHA1}"
