@@ -69,6 +69,7 @@ workflows:
             - phpspec
             - behat_fake
       - aws-ecr/build-and-push-image:
+          attach-workspace: true
           account-url: AWS_ECR_ACCOUNT_URL
           repo: "ci-demo"
           region: AWS_DEFAULT_REGION
