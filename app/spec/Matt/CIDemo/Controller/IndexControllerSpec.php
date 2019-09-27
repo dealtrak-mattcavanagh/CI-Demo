@@ -12,7 +12,7 @@ use Zend\Diactoros\Response\JsonResponse;
 
 class IndexControllerSpec extends ObjectBehavior
 {
-    private $htmlBody = 'foo';
+    private $htmlBody = 'Test 1337';
     private $jsonBody = ['foo' => 'test2'];
 
     function let(
