@@ -9,11 +9,11 @@ resource aws_ecs_cluster "ci" {
 }
 
 resource aws_ecr_repository "ci" {
-  name = "ci-demo"
+  name = "ci-service"
 }
 
 resource aws_ecs_task_definition "ci_app" {
-  family = "ci-task-def"
+  family = "ci-service"
   container_definitions = file("ecs-task-definition.json")
 
   volume {
