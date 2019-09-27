@@ -70,6 +70,7 @@ workflows:
             - behat_fake
       - aws-ecr/build-and-push-image:
           attach-workspace: true
+          workspace-root: ~/app
           account-url: AWS_ECR_ACCOUNT_URL
           repo: "ci-demo"
           region: AWS_DEFAULT_REGION
